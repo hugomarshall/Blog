@@ -1,6 +1,53 @@
-@Blog_HostAddress = http://localhost:5005
+@Blog_HostAddress = https://localhost:32773
 
-GET {{Blog_HostAddress}}/weatherforecast/
+### GET request to fetch all posts
+GET {{Blog_HostAddress}}/api/posts/
 Accept: application/json
+
+###
+
+### GET request to fetch a specific post by ID
+GET {{Blog_HostAddress}}/api/posts/2
+Accept: application/json
+
+###
+
+### POST request to create a new post
+POST {{Blog_HostAddress}}/api/posts/
+Content-Type: application/json
+
+{
+  "title": "New Post",
+  "content": "This is the content of the new post."
+}
+
+###
+
+### PUT request to update an existing post by ID
+PUT {{Blog_HostAddress}}/api/posts/0
+Content-Type: application/json
+
+{
+  "title": "Updated Post Title",
+  "content": "This is the updated content of the post."
+}
+
+###
+
+### DELETE request to delete a post by ID
+DELETE {{Blog_HostAddress}}/api/posts/5
+Accept: application/json
+
+###
+
+### POST request to add a comment in post by ID
+POST {{Blog_HostAddress}}/api/posts/3/comments
+Content-Type: application/json
+
+{
+  "blogId": 3,
+  "author": "Hugo",
+  "content": "Hey Ho, Let's go!"
+}
 
 ###
