@@ -45,4 +45,4 @@ The project is configured to open on port [http:32774], if you are already using
 - Enter the address: [http://localhost:32774/scalar/v1](http://localhost:32774/scalar/v1);
 - On the Test Request Page, check if the address is pointed to http://localhost:32774.
 
-Hope you enjoy it! :relaxed:
+Hope you enjoy it! :relaxed: :coffee: :sunglasses:
