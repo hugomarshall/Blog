@@ -22,12 +22,15 @@ To run the project you need to have the following "programs/frameworks" installe
   - Type the command: docker-compose up to publish and run the image; 
   
 >__Note__:
-Docker-compose is configured for the system to open on port [http:32774], if you are already using this port, you will need to change the port in the docker-compose file.
+The project is configured to open on port [http:32774], if you are already using this port, you will need to change the port in the docker-compose file.
 
 - Via Visual Studio:
   - Open the project in Visual Studio;
   - Set the project "http" or "https" as the startup project;
   - Run the project;
+
+>__Note__:
+The project is configured to open on port [http:32774], if you are already using this port, you will need to change the port in the launchSettings file.
 
 ### Tests
 - Via Browser:
@@ -36,4 +39,4 @@ Docker-compose is configured for the system to open on port [http:32774], if you
 - Via Blog.http:
   - At the root of the Blog project, there is a file called Blog.http.  
   It contains tests for all requests.
-  - Open the file and click on the Send Request link.
+  - Open the file and click on the Send Request link above the requests.
