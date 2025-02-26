@@ -40,3 +40,9 @@ The project is configured to open on port [http:32774], if you are already using
   - At the root of the Blog project, there is a file called Blog.http.  
   It contains tests for all requests.
   - Open the file and click on the Send Request link above the requests.
+
+- Via Scalar:
+- Enter the address: [http://localhost:32774/scalar/v1](http://localhost:32774/scalar/v1);
+- On the Test Request Page, check if the address is pointed to http://localhost:32774.
+
+Hope you enjoy it! [:relaxed:]

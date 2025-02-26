@@ -1,10 +1,17 @@
-﻿namespace Blog.Domain
+﻿using System.ComponentModel;
+
+namespace Blog.Domain
 {
     public record BlogPost
     {
+        [Description("The post ID.")]
+
         public int Id { get; private set; }
+        [Description("Post Title.")]
         public string Title { get; private set; }
+        [Description("Post Content.")]
         public string Content { get; private set; }
+        [Description("Post Comments.")]
         public List<Comment> Comments { get; private set; } = new List<Comment>();
 
         public BlogPost(int id, string title, string content)

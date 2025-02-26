@@ -1,9 +1,14 @@
-﻿namespace Blog.Domain
+﻿using System.ComponentModel;
+
+namespace Blog.Domain
 {
     public record Comment
     {
-        public int BlogId { get; private set; }
+        [Description("Post ID.")]
+        public int PostId { get; private set; }
+        [Description("Comment Author.")]
         public string Author { get; private set; }
+        [Description("Comment Content.")]
         public string Content { get; private set; }
 
         public Comment(int blogId, string author, string content)
@@ -18,7 +23,7 @@
                 throw new ArgumentException("Content cannot be empty or whitespace.", nameof(content));
             }
 
-            BlogId = blogId;
+            PostId = blogId;
             Author = author;
             Content = content;
         }
