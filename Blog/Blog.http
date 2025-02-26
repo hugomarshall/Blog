@@ -1,4 +1,4 @@
-@Blog_HostAddress = https://localhost:32773
+@Blog_HostAddress = http://localhost:32774
 
 ### GET request to fetch all posts
 GET {{Blog_HostAddress}}/api/posts/
@@ -24,7 +24,7 @@ Content-Type: application/json
 ###
 
 ### PUT request to update an existing post by ID
-PUT {{Blog_HostAddress}}/api/posts/0
+PUT {{Blog_HostAddress}}/api/posts/3
 Content-Type: application/json
 
 {

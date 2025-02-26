@@ -1,0 +1,11 @@
+services:
+  blog:
+    image: blog:latest
+    build:
+      context: .
+      dockerfile: Blog/Dockerfile
+    ports:
+      - "32774:8080"
+      - "32775:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
