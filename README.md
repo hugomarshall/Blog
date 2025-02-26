@@ -18,8 +18,8 @@ To run the project you need to have the following "programs/frameworks" installe
 ### Usage
 - Via Docker:
   - Open the Terminal in the folder where the docker-compose file is located (root folder).
-  - Type the command: docker-compose build and wait for the build;
-  - Type the command: docker-compose up to publish and run the image; 
+  - Type the command: "docker-compose build" and wait for the build;
+  - Type the command: "docker-compose up" to publish and run the image; 
   
 >__Note__:
 The project is configured to open on port [http:32774], if you are already using this port, you will need to change the port in the docker-compose file.
