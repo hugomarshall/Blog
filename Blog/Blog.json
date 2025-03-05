@@ -200,6 +200,7 @@
       },
       "Comment": {
         "required": [
+          "postId",
           "author",
           "content"
         ],

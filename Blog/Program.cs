@@ -49,3 +49,4 @@ app.Map("/error", (HttpContext httpContext) =>
 
 app.Run();
 
+public partial class Program { }

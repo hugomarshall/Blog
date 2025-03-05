@@ -24,6 +24,10 @@ public class BlogPostService : IBlogPostService
             new BlogPost(3, "Third Post", "This is the third post.")
         };
     }
+    public BlogPostService(List<BlogPost> posts)
+    {
+        _posts = posts;
+    }
 
     public IEnumerable<BlogPost> GetAll() => _posts;
 

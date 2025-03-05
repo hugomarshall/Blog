@@ -11,7 +11,7 @@ namespace Blog.Domain
         [Description("Comment Content.")]
         public string Content { get; private set; }
 
-        public Comment(int blogId, string author, string content)
+        public Comment(int postId, string author, string content)
         {
             if (string.IsNullOrWhiteSpace(author))
             {
@@ -23,7 +23,7 @@ namespace Blog.Domain
                 throw new ArgumentException("Content cannot be empty or whitespace.", nameof(content));
             }
 
-            PostId = blogId;
+            PostId = postId;
             Author = author;
             Content = content;
         }
