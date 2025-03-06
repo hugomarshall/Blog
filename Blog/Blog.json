@@ -206,14 +206,17 @@
         ],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "postId": {
             "type": "integer",
             "description": "Post ID.",
             "format": "int32"
           },
           "author": {
-            "type": "string",
-            "description": "Comment Author."
+            "type": "string"
           },
           "content": {
             "type": "string",

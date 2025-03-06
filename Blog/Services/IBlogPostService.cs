@@ -1,10 +1,11 @@
 using Blog.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Services;
 public interface IBlogPostService
 {
     IEnumerable<BlogPost> GetAll();
-    BlogPost GetById(int id);
+    BlogPost? GetById(int id);
     BlogPost Add(BlogPost post);
     BlogPost Update(int id, BlogPost post);
     void Delete(int id);
@@ -13,62 +14,71 @@ public interface IBlogPostService
 
 public class BlogPostService : IBlogPostService
 {
-    private readonly List<BlogPost> _posts;
+    private readonly BlogDbContext _context;
 
-    public BlogPostService()
+    public BlogPostService(BlogDbContext context)
     {
-        _posts = new List<BlogPost>
-        {
-            new BlogPost(1, "First Post", "This is the first post."),
-            new BlogPost(2, "Second Post", "This is the second post."),
-            new BlogPost(3, "Third Post", "This is the third post.")
-        };
+        _context = context;
     }
+
     public BlogPostService(List<BlogPost> posts)
     {
-        _posts = posts;
+        if (_context is not null)
+        {
+            _context.Posts.AddRange(posts);
+            _context.SaveChanges();
+        }
     }
 
-    public IEnumerable<BlogPost> GetAll() => _posts;
+    public IEnumerable<BlogPost> GetAll()
+    {
+        return [.. _context.Posts.Include(x => x.Comments).AsNoTracking()];
+    }
 
-    public BlogPost GetById(int id) => _posts.FirstOrDefault(p => p.Id == id);
+    public BlogPost? GetById(int id) => _context.Posts.Include(x => x.Comments).FirstOrDefault(p => p.Id == id);
 
     public BlogPost Add(BlogPost post)
     {
-        post = new BlogPost(_posts.Count + 1, post.Title, post.Content);
-        _posts.Add(post);
+        post = new BlogPost(0, post.Title, post.Content);
+        _context.Posts.Add(post);
+        _context.SaveChanges();
         return post;
     }
 
     public BlogPost Update(int id, BlogPost post)
     {
-        var existingPost = _posts.FirstOrDefault(p => p.Id == id);
+        var existingPost = _context.Posts.FirstOrDefault(p => p.Id == id);
         if (existingPost == null)
         {
             throw new KeyNotFoundException("Post not found");
         }
         existingPost.Update(post.Title, post.Content);
+        _context.Update(existingPost);
+        _context.SaveChanges();
         return existingPost;
     }
 
     public void Delete(int id)
     {
-        var post = _posts.FirstOrDefault(p => p.Id == id);
+        var post = _context.Posts.FirstOrDefault(p => p.Id == id);
         if (post == null)
         {
             throw new KeyNotFoundException("Post not found");
         }
-        _posts.Remove(post);
+        _context.Posts.Remove(post);
+        _context.SaveChanges();
     }
 
     public Comment AddComment(int postId, Comment comment)
     {
-        var post = _posts.FirstOrDefault(p => p.Id == postId);
+        var post = _context.Posts.FirstOrDefault(p => p.Id == postId);
         if (post == null)
         {
             throw new KeyNotFoundException("Post not found");
         }
         post.AddComment(comment);
+        _context.Posts.Update(post);
+        _context.SaveChanges();
         return comment;
     }
 }

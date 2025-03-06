@@ -12,7 +12,7 @@ namespace Blog.Domain
         [Description("Post Content.")]
         public string Content { get; private set; }
         [Description("Post Comments.")]
-        public List<Comment> Comments { get; private set; } = new List<Comment>();
+        public List<Comment> Comments { get; private set; } = [];
 
         public BlogPost(int id, string title, string content)
         {

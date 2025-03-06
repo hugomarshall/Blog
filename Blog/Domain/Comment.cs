@@ -1,12 +1,16 @@
 ﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace Blog.Domain
 {
     public record Comment
     {
+        public int Id { get; set; }
         [Description("Post ID.")]
         public int PostId { get; private set; }
         [Description("Comment Author.")]
+        [JsonIgnore]
+        public virtual BlogPost Post { get; set; }
         public string Author { get; private set; }
         [Description("Comment Content.")]
         public string Content { get; private set; }
